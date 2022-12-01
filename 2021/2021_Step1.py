@@ -27,7 +27,7 @@ for f in files:
         if ws.cell(row, 4).value != ".TIF":
             ws.delete_rows(row)
             continue
-        temp = datetime.datetime.strptime(date, "%m/%d/%Y %H:%M:%S %p")
+        temp = datetime.datetime.strptime(date, "%m/%d/%Y %I:%M:%S %p")
         sec = time.mktime(temp.timetuple())
         ws.cell(row, 8).value = sec
         startSec = ws.cell(3, 8).value
