@@ -2,9 +2,9 @@ import collections
 import os
 import openpyxl
 
-path1 = "/Users/w0z0341/Desktop/2021_Temp1"
-path2 = "/Users/w0z0341/Desktop/2021_Temp2"
-path3 = "/Users/w0z0341/Desktop/2021_Destination"
+path1 = r"C:\Users\GouldLab\Desktop\2021\Temp1"
+path2 = r"C:\Users\GouldLab\Desktop\2021\Temp2"
+path3 = r"C:\Users\GouldLab\Desktop\2021\2021_Destination"
 
 files1 = os.listdir(path1)
 files2 = os.listdir(path2)
@@ -20,7 +20,10 @@ for f in files1:
             sec = ws1.cell(row, 9).value
             if sec is None:
                 break
-            Map[f[:3]].append(sec)
+            if "rep" in f:
+                Map[f[:6]].append(sec)
+            else:
+                Map[f[:3]].append(sec)
         wb1.close()
 
 for K in Map:
@@ -38,18 +41,32 @@ for K in Map:
                 s = 0
                 count = 0
                 col = 6
+
+
                 while col >= 6:
                     if ws2.cell(row, col).value is None:
                         break
                     C = ws2.cell(row, col + 1).value
                     N = ws2.cell(row, col).value
-                    s += C/N
-                    count += 1
-                    col += 2
+                    try:
+                        s += C/N
+                        count += 1
+                        col += 2
+                    except:
+                        if int(N) == 0:
+                            col += 2
+                            continue
+                        else:
+                            print("Other Errors!!!!!!")
+                            col += 2
+                            continue
                 if count == 0:
                     continue
                 ws2.cell(row, 5).value = format(s/count, ".2f")
-            wb2.save(path3 + "/" + f[:3] + "_result.xlsx")
+            if "rep" in f:
+                wb2.save(path3 + "/" + f[:6] + "_result.xlsx")
+            else:
+                wb2.save(path3 + "/" + f[:3] + "_result.xlsx")
 
 
 

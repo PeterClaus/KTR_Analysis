@@ -2,7 +2,7 @@ import collections
 import os
 import openpyxl
 
-path = "/Users/w0z0341/Desktop/2021_Destination"
+path = r"C:\Users\GouldLab\Desktop\2021\2021_Destination"
 
 files = os.listdir(path)
 Map = collections.defaultdict(list)
@@ -15,8 +15,12 @@ for f in files:
         for row in range(1, max_row + 1):
             l1.append(ws.cell(row, 2).value)
             l2.append(ws.cell(row, 5).value)
-        Map[f[:3]].append(l1)
-        Map[f[:3]].append(l2)
+        if "rep" in f:
+            Map[f[:6]].append(l1)
+            Map[f[:6]].append(l2)
+        else:
+            Map[f[:3]].append(l1)
+            Map[f[:3]].append(l2)
 WB = openpyxl.Workbook()
 for K in Map:
     sheet = WB.create_sheet(K)

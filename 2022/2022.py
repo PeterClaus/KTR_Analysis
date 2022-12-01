@@ -1,8 +1,8 @@
 import os
 import openpyxl
 
-path1 = r"C:\\Users\\claus\\Desktop\\2022_Origin"
-path2 = r"C:\\Users\\claus\\Desktop\\2022_Destination"
+path1 = r"C:\\Users\\GouldLab\\Desktop\\2022\\2022_Origin"
+path2 = r"C:\Users\GouldLab\Desktop\2022\2022_Destination"
 
 files = os.listdir(path1)
 data = [("Name", "Average C/N")]
@@ -16,8 +16,8 @@ for f in files:
         while row >= 2:
             if ws.cell(row, 1).value is None:
                 break
-            C = ws.cell(row + 1, 3).value
-            N = ws.cell(row, 3).value
+            C = ws.cell(row + 1, 4).value
+            N = ws.cell(row, 4).value
             s += C/N
             count += 1
             row += 2

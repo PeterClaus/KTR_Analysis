@@ -4,8 +4,8 @@ import time
 import datetime
 import pandas as pd
 
-path1 = "/Users/w0z0341/Desktop/2021_Origin"
-path2 = "/Users/w0z0341/Desktop/2021_Temp1"
+path1 = r"C:\Users\GouldLab\Desktop\2021\2021_Origin"
+path2 = r"C:\Users\GouldLab\Desktop\2021\Temp1"
 files = os.listdir(path1)
 for f in files:
     if f.endswith(".txt") and f[0].isalpha():
