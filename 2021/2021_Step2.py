@@ -44,7 +44,8 @@ for K in Map:
 
 
                 while col >= 6:
-                    if ws2.cell(row, col).value is None:
+                    if ws2.cell(row, col).value is None or ws2.cell(row, col).value == "":
+
                         break
                     C = ws2.cell(row, col + 1).value
                     N = ws2.cell(row, col).value
@@ -53,11 +54,11 @@ for K in Map:
                         count += 1
                         col += 2
                     except:
-                        if int(N) == 0:
+                        if N == 0 or N == "N/A":
                             col += 2
                             continue
                         else:
-                            print("Other Errors!!!!!!")
+                            print(f, row, col, C, N, "Other Errors!!!!!!")
                             col += 2
                             continue
                 if count == 0:
